@@ -130,6 +130,17 @@ export const login = async (req, res) => {
 
   } catch (error) {
     console.error("Login error:", error);
+
+    if (req.body?.email) {
+      delete otpStore[req.body.email];
+    }
+
+    if (["EMAIL_NOT_CONFIGURED", "EMAIL_API_ERROR", "ESOCKET", "ECONNECTION", "ETIMEDOUT"].includes(error.code)) {
+      return res.status(503).json({
+        message: "Unable to send OTP email right now. Please try again later.",
+      });
+    }
+
     res.status(500).json({
       message: "Server error",
     });

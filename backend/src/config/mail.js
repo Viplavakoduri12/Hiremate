@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 const DEFAULT_SMTP_HOST = "smtp.gmail.com";
 const DEFAULT_SMTP_PORT = 465;
 const DEFAULT_SMTP_SECURE = true;
+const RESEND_API_URL = "https://api.resend.com/emails";
 
 let transporterPromise;
 
@@ -75,6 +76,20 @@ export const getMailTransport = async () => {
   return transporterPromise;
 };
 
+const resolveMailProvider = () => {
+  const configuredProvider = (process.env.EMAIL_PROVIDER || "").trim().toLowerCase();
+
+  if (configuredProvider) {
+    return configuredProvider;
+  }
+
+  if (process.env.RESEND_API_KEY) {
+    return "resend";
+  }
+
+  return "smtp";
+};
+
 const shouldRetryMailSend = (error) => {
   if (process.env.SMTP_HOST_IP) {
     return false;
@@ -85,7 +100,7 @@ const shouldRetryMailSend = (error) => {
   );
 };
 
-export const sendMail = async (mailOptions) => {
+const sendMailWithSmtp = async (mailOptions) => {
   const message = {
     from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
     ...mailOptions,
@@ -103,6 +118,98 @@ export const sendMail = async (mailOptions) => {
     const transporter = await getMailTransport();
     return transporter.sendMail(message);
   }
+};
+
+const sendMailWithResend = async (message) => {
+  if (!process.env.RESEND_API_KEY) {
+    const error = new Error("RESEND_API_KEY is missing");
+    error.code = "EMAIL_NOT_CONFIGURED";
+    throw error;
+  }
+
+  const from = process.env.EMAIL_FROM || message.from;
+
+  if (!from) {
+    const error = new Error("EMAIL_FROM is required when using Resend");
+    error.code = "EMAIL_NOT_CONFIGURED";
+    throw error;
+  }
+
+  const payload = {
+    from,
+    to: Array.isArray(message.to) ? message.to : [message.to],
+    subject: message.subject,
+  };
+
+  if (message.text !== undefined) {
+    payload.text = message.text;
+  }
+
+  if (message.html !== undefined) {
+    payload.html = message.html;
+  }
+
+  if (message.cc) {
+    payload.cc = Array.isArray(message.cc) ? message.cc : [message.cc];
+  }
+
+  if (message.bcc) {
+    payload.bcc = Array.isArray(message.bcc) ? message.bcc : [message.bcc];
+  }
+
+  const replyTo = process.env.EMAIL_REPLY_TO || message.replyTo;
+  if (replyTo) {
+    payload.reply_to = replyTo;
+  }
+
+  let response;
+
+  try {
+    response = await fetch(RESEND_API_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(30_000),
+    });
+  } catch (error) {
+    error.code = "EMAIL_API_ERROR";
+    throw error;
+  }
+
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    const errorMessage =
+      data?.message || data?.error?.message || `Resend API request failed with status ${response.status}`;
+    const error = new Error(errorMessage);
+    error.code = "EMAIL_API_ERROR";
+    error.status = response.status;
+    error.details = data;
+    throw error;
+  }
+
+  return {
+    messageId: data?.id,
+    provider: "resend",
+    raw: data,
+  };
+};
+
+export const sendMail = async (mailOptions) => {
+  const provider = resolveMailProvider();
+  const message = {
+    from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+    ...mailOptions,
+  };
+
+  if (provider === "resend") {
+    return sendMailWithResend(message);
+  }
+
+  return sendMailWithSmtp(message);
 };
 
 export const resetMailTransport = () => {
