@@ -41,6 +41,8 @@ services:
         sync: false
       - key: EMAIL_PROVIDER
         sync: false
+      - key: OTP_DELIVERY_MODE
+        sync: false
       - key: EMAIL_FROM
         sync: false
       - key: EMAIL_REPLY_TO

@@ -7,6 +7,8 @@ import { sendMail } from "../config/mail.js";
 /* TEMP OTP STORE */
 const otpStore = {};
 const OTP_EXPIRY_MS = 5 * 60 * 1000;
+const getOtpDeliveryMode = () =>
+  (process.env.OTP_DELIVERY_MODE || "email").trim().toLowerCase();
 
 const generateNumericOtp = () =>
   otpGenerator.generate(6, {
@@ -114,6 +116,19 @@ export const login = async (req, res) => {
     /* GENERATE NUMERIC OTP */
     const { otp, expiresAt } = createOtpRecord(email);
 
+    const otpDeliveryMode = getOtpDeliveryMode();
+
+    if (otpDeliveryMode === "direct") {
+      return res.json({
+        message: "OTP generated successfully",
+        email,
+        expiresAt,
+        expiresInSeconds: OTP_EXPIRY_MS / 1000,
+        deliveryMode: "direct",
+        directOtp: otp,
+      });
+    }
+
     /* SEND OTP EMAIL */
     await sendMail({
       to: email,
@@ -126,6 +141,7 @@ export const login = async (req, res) => {
       email,
       expiresAt,
       expiresInSeconds: OTP_EXPIRY_MS / 1000,
+      deliveryMode: "email",
     });
 
   } catch (error) {

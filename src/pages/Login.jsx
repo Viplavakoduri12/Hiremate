@@ -65,6 +65,8 @@ function Login() {
   const [showOtp, setShowOtp] = useState(false);
   const [otpExpiresAt, setOtpExpiresAt] = useState(null);
   const [resendAvailableAt, setResendAvailableAt] = useState(null);
+  const [otpDeliveryMode, setOtpDeliveryMode] = useState("email");
+  const [directOtp, setDirectOtp] = useState("");
   const [now, setNow] = useState(Date.now());
 
   const [message, setMessage] = useState("");
@@ -158,15 +160,25 @@ function Login() {
       const nextExpiry = Number.isFinite(Number(data.expiresAt))
         ? Number(data.expiresAt)
         : Date.now() + OTP_EXPIRY_FALLBACK_MS;
+      const nextDeliveryMode = data.deliveryMode === "direct" ? "direct" : "email";
+      const nextDirectOtp = nextDeliveryMode === "direct" ? String(data.directOtp || "") : "";
 
       setShowOtp(true);
-      setOtp("");
+      setOtp(nextDirectOtp);
       setOtpExpiresAt(nextExpiry);
       setResendAvailableAt(Date.now() + RESEND_COOLDOWN_SECONDS * 1000);
+      setOtpDeliveryMode(nextDeliveryMode);
+      setDirectOtp(nextDirectOtp);
       setNow(Date.now());
       setMessage(
         data.message ||
-          (isResend ? "A new OTP has been sent to your email" : "OTP sent to your email")
+          (nextDeliveryMode === "direct"
+            ? isResend
+              ? "A new OTP has been generated on screen"
+              : "OTP generated on screen"
+            : isResend
+              ? "A new OTP has been sent to your email"
+              : "OTP sent to your email")
       );
       setMessageType("success");
       return true;
@@ -357,8 +369,17 @@ function Login() {
                 </div>
 
                 <p className="otp-hint">
-                  Enter the 6-digit code sent to your email.
+                  {otpDeliveryMode === "direct"
+                    ? "Use the 6-digit code shown below for this testing session."
+                    : "Enter the 6-digit code sent to your email."}
                 </p>
+
+                {otpDeliveryMode === "direct" && directOtp && (
+                  <div className="otp-preview" aria-live="polite">
+                    <span className="otp-preview-label">Direct OTP</span>
+                    <strong>{directOtp}</strong>
+                  </div>
+                )}
 
                 <div className="input-group">
                   <input
