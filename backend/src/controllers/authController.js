@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-import nodemailer from "nodemailer";
 import otpGenerator from "otp-generator";
+import { sendMail } from "../config/mail.js";
 
 /* TEMP OTP STORE */
 const otpStore = {};
@@ -114,18 +114,8 @@ export const login = async (req, res) => {
     /* GENERATE NUMERIC OTP */
     const { otp, expiresAt } = createOtpRecord(email);
 
-    /* EMAIL TRANSPORTER */
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     /* SEND OTP EMAIL */
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    await sendMail({
       to: email,
       subject: "HireMate Login OTP",
       text: `Your HireMate login OTP is ${otp}. It expires in 5 minutes.`,

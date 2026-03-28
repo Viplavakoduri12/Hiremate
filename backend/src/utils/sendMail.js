@@ -1,20 +1,11 @@
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+import { sendMail } from "../config/mail.js";
 
 export const sendAcceptanceMail = async (to, name) => {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     throw new Error("Email credentials are missing");
   }
 
-  return transporter.sendMail({
-    from: process.env.EMAIL_USER,
+  return sendMail({
     to,
     subject: "Application Accepted",
     text: `Congratulations ${name}. Your application has been accepted. Our team will contact you soon with the next steps.`,
