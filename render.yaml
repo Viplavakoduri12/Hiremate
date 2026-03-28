@@ -76,7 +76,7 @@ services:
         fromService:
           type: web
           name: hiremate-ats
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: ATS_REQUEST_TIMEOUT_MS
         value: "45000"
       - key: ATS_MAX_RETRIES
