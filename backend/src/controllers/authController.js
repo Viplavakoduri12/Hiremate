@@ -137,7 +137,10 @@ export const login = async (req, res) => {
 
     if (["EMAIL_NOT_CONFIGURED", "EMAIL_API_ERROR", "ESOCKET", "ECONNECTION", "ETIMEDOUT"].includes(error.code)) {
       return res.status(503).json({
-        message: "Unable to send OTP email right now. Please try again later.",
+        message:
+          error.code === "EMAIL_NOT_CONFIGURED"
+            ? error.message
+            : "Unable to send OTP email right now. Please try again later.",
       });
     }
 

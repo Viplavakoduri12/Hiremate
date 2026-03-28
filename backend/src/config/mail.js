@@ -90,6 +90,16 @@ const resolveMailProvider = () => {
   return "smtp";
 };
 
+const assertSupportedMailConfiguration = (provider) => {
+  if (provider === "smtp" && process.env.RENDER === "true") {
+    const error = new Error(
+      "SMTP is blocked on Render. Configure EMAIL_PROVIDER=resend with RESEND_API_KEY and EMAIL_FROM."
+    );
+    error.code = "EMAIL_NOT_CONFIGURED";
+    throw error;
+  }
+};
+
 const shouldRetryMailSend = (error) => {
   if (process.env.SMTP_HOST_IP) {
     return false;
@@ -200,6 +210,7 @@ const sendMailWithResend = async (message) => {
 
 export const sendMail = async (mailOptions) => {
   const provider = resolveMailProvider();
+  assertSupportedMailConfiguration(provider);
   const message = {
     from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
     ...mailOptions,
