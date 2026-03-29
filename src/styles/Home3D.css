@@ -111,6 +111,7 @@
 .hero-content-wrapper {
   position: relative;
   z-index: 50;
+  width: 100%;
   max-width: 800px;
 }
 
@@ -119,6 +120,7 @@
   font-weight: 800;
   margin-bottom: 20px;
   line-height: 1.2;
+  letter-spacing: -0.05em;
   color: #ffffff;
 }
 
@@ -193,6 +195,7 @@
   font-weight: 800;
   text-align: center;
   margin-bottom: 60px;
+  letter-spacing: -0.05em;
   color: #ffffff;
 }
 
@@ -365,6 +368,10 @@
     padding: 15px 20px;
   }
 
+  .hero-content-wrapper {
+    max-width: 640px;
+  }
+
   .hero-section-3d,
   .workflow-section,
   .roles-section {
@@ -401,56 +408,191 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .starfield-canvas {
+    opacity: 0.42;
+  }
+
   .home-nav {
-    align-items: stretch;
+    justify-content: center;
+    padding: 18px 18px 0;
   }
 
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .hero-section-3d {
-    min-height: auto;
-    padding-top: 54px;
-    padding-bottom: 54px;
+  .home-logo {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
   }
 
   .home-auth {
     width: 100%;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .nav-login,
   .nav-signup {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .nav-login {
+    border: 1px solid rgba(56, 189, 248, 0.34);
+    background: rgba(56, 189, 248, 0.08);
+    text-decoration: none;
+  }
+
+  .nav-login:hover {
+    opacity: 1;
+    background: rgba(56, 189, 248, 0.14);
+  }
+
+  .hero-section-3d {
+    min-height: auto;
+    padding: 34px 18px 44px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.3rem, 10vw, 3.1rem);
+    margin-bottom: 14px;
+    line-height: 1.05;
+  }
+
+  .hero-subtitle {
+    max-width: 30ch;
+    margin: 0 auto 28px;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
     width: 100%;
-    text-align: center;
+    gap: 12px;
   }
 
   .btn-outline {
     width: 100%;
     max-width: none;
-    padding: 12px 24px;
-    font-size: 14px;
+    min-height: 52px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 15px;
+    box-shadow: 0 14px 28px rgba(2, 6, 23, 0.22);
+  }
+
+  .hero-actions .btn-primary {
+    background: rgba(56, 189, 248, 0.12);
+  }
+
+  .hero-actions .btn-secondary {
+    background: rgba(2, 6, 23, 0.38);
   }
 
   .workflow-section,
   .roles-section {
-    padding-top: 56px;
-    padding-bottom: 56px;
+    padding: 48px 18px;
+  }
+
+  .workflow-cards,
+  .roles-cards {
+    gap: 18px;
   }
 
   .workflow-section h2,
   .roles-section h2 {
-    margin-bottom: 36px;
+    margin-bottom: 30px;
+    font-size: 2.1rem;
   }
 
   .card-3d,
   .role-card {
-    height: 320px;
+    height: 300px;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 24px 20px 64px;
+    border-radius: 20px;
+  }
+
+  .workflow-card h3,
+  .role-card h3 {
+    font-size: 1.45rem;
+  }
+
+  .workflow-card p,
+  .role-card > .card-front > p,
+  .card-back li {
+    font-size: 0.95rem;
+  }
+
+  .flip-btn {
+    bottom: 14px;
+    padding: 10px 16px;
+    border-radius: 999px;
   }
 
   .home-footer {
-    padding: 30px 18px;
+    padding: 24px 18px 32px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-nav {
+    align-items: stretch;
+  }
+
+  .home-auth {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-login,
+  .nav-signup {
+    width: 100%;
+  }
+
+  .btn-outline {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 11vw, 2.55rem);
+  }
+
+  .hero-subtitle {
+    max-width: 26ch;
+    font-size: 0.96rem;
+  }
+
+  .card-3d,
+  .role-card {
+    height: 288px;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-logo {
+    font-size: 29px;
+  }
+
+  .hero-title {
+    font-size: 1.95rem;
+  }
+
+  .workflow-section h2,
+  .roles-section h2 {
+    font-size: 1.85rem;
+  }
+
+  .card-3d,
+  .role-card {
+    height: 274px;
   }
 }
