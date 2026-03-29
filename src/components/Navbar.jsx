@@ -1,9 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 
 function Navbar({ role }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const currentRole = role || localStorage.getItem("role") || "";
 
   /* MANUAL LOGOUT */
   const handleLogout = () => {
@@ -28,16 +31,32 @@ function Navbar({ role }) {
     return () => clearInterval(interval);
   }, [navigate]);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
       <div className="nav-logo">HireMate</div>
 
-      <div className="nav-right">
+      <button
+        type="button"
+        className={`nav-menu-toggle ${menuOpen ? "open" : ""}`}
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((current) => !current)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <div className={`nav-right ${menuOpen ? "open" : ""}`}>
 
         <div className="nav-links">
 
           {/* APPLICANT NAVBAR */}
-          {role === "applicant" && (
+          {currentRole === "applicant" && (
             <>
               <Link to="/track">Dashboard</Link>
               <Link to="/applicant">Apply Job</Link>
@@ -45,7 +64,7 @@ function Navbar({ role }) {
           )}
 
           {/* HR NAVBAR */}
-          {role === "hr" && (
+          {currentRole === "hr" && (
             <>
               <Link to="/hr">HR Dashboard</Link>
               <Link to="/hr">Analyze</Link>
@@ -53,7 +72,7 @@ function Navbar({ role }) {
           )}
 
           {/* ADMIN NAVBAR */}
-          {role === "admin" && (
+          {currentRole === "admin" && (
             <>
               <Link to="/admin">Admin Dashboard</Link>
               <Link to="/admin">Users</Link>

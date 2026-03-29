@@ -26,23 +26,25 @@
 
 .table-wrapper {
   max-height: 300px;
+  overflow-x: auto;
   overflow-y: auto;
   border-radius: 12px;
 }
 
-table {
+.admin-card table {
   width: 100%;
+  min-width: 680px;
   border-collapse: collapse;
 }
 
-thead {
+.admin-card thead {
   background: #020617;
   position: sticky;
   top: 0;
 }
 
-th,
-td {
+.admin-card th,
+.admin-card td {
   padding: 14px;
   border-bottom: 1px solid #1e293b;
   text-align: left;
@@ -84,6 +86,7 @@ td {
 }
 .stats-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
   margin-bottom: 35px;
@@ -91,6 +94,7 @@ td {
 
 .stat-card {
   width: 200px;
+  max-width: 100%;
   padding: 20px;
   background: rgba(15, 23, 42, 0.95);
   border-radius: 16px;
@@ -116,4 +120,45 @@ td {
 
 .inactive-card p {
   color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 84px 16px 28px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .stats-container {
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    flex: 1 1 180px;
+    width: auto;
+    padding: 18px;
+  }
+
+  .admin-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    flex-basis: 100%;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+
+  .activate-btn,
+  .deactivate-btn {
+    white-space: nowrap;
+  }
 }

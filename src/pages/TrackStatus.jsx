@@ -13,6 +13,7 @@ const steps = [
 function TrackStatus() {
 
   const [applications, setApplications] = useState([]);
+  const [flippedCards, setFlippedCards] = useState({});
 
   /* FETCH USER APPLICATIONS */
 
@@ -57,6 +58,13 @@ function TrackStatus() {
     return Math.round(
       ((index + 1) / steps.length) * 100
     );
+  };
+
+  const toggleCard = (index) => {
+    setFlippedCards((current) => ({
+      ...current,
+      [index]: !current[index],
+    }));
   };
 
   /* ESTIMATED TIME */
@@ -150,7 +158,19 @@ function TrackStatus() {
 
             return (
 
-              <div className="flip-card" key={index}>
+              <div
+                className={`flip-card ${flippedCards[index] ? "flipped" : ""}`}
+                key={index}
+                role="button"
+                tabIndex={0}
+                onClick={() => toggleCard(index)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    toggleCard(index);
+                  }
+                }}
+              >
 
                 <div className="flip-inner">
 
@@ -241,6 +261,8 @@ function TrackStatus() {
 
                     </div>
 
+                    <p className="flip-hint">Tap card to view details</p>
+
                   </div>
 
                   {/* BACK */}
@@ -283,6 +305,8 @@ function TrackStatus() {
                         </p>
 
                       )}
+
+                    <p className="flip-hint">Tap card to go back</p>
 
                   </div>
 

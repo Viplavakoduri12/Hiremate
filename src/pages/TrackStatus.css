@@ -30,12 +30,14 @@ body {
 
 .summary-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin-bottom: 40px;
 }
 
 .summary-card {
+  min-width: 150px;
   background: #1e293b;
   padding: 15px 25px;
   border-radius: 12px;
@@ -181,8 +183,8 @@ body {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards */
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 28px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -192,13 +194,18 @@ body {
 
 .flip-card {
   width: 100%;
-  max-width: 340px;
+  max-width: none;
   perspective: 1000px;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .flip-card:hover {
   transform: translateY(-6px);
+}
+
+.flip-card.flipped .flip-inner {
+  transform: rotateY(180deg);
 }
 
 .flip-inner {
@@ -209,8 +216,10 @@ body {
   transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-inner {
-  transform: rotateY(180deg);
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .flip-front,
@@ -261,6 +270,15 @@ body {
   box-shadow: 0 20px 60px rgba(34, 197, 94, 0.2);
 }
 
+.flip-hint {
+  margin-top: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 /* REJECTION REASON STYLE */
 
 .reject-reason{
@@ -272,4 +290,75 @@ body {
   color:#fca5a5;
   font-size:13px;
   line-height:1.5;
+}
+
+@media (max-width: 900px) {
+  .track-wrapper {
+    padding: 108px 24px 40px;
+  }
+
+  .summary-bar {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .track-wrapper {
+    padding: 98px 16px 30px;
+  }
+
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .summary-card {
+    min-width: 0;
+    padding: 14px 16px;
+    text-align: center;
+  }
+
+  .flip-inner {
+    height: 400px;
+  }
+
+  .flip-front,
+  .flip-back {
+    padding: 22px 18px;
+  }
+
+  .timeline {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    gap: 0;
+  }
+
+  .timeline-step-wrapper {
+    min-width: 74px;
+  }
+
+  .line {
+    width: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .summary-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .status-title {
+    font-size: 22px;
+  }
+
+  .step-label {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  .flip-inner {
+    height: 420px;
+  }
 }

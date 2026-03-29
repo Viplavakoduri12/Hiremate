@@ -30,6 +30,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
   padding: 20px 40px;
   background: transparent;
   position: sticky;
@@ -123,7 +125,7 @@
 .changing-word {
   color: #38bdf8;
   display: inline-block;
-  min-width: 150px;
+  min-width: 0;
 }
 
 .hero-subtitle {
@@ -196,7 +198,7 @@
 
 .workflow-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -317,7 +319,7 @@
 
 .roles-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
@@ -363,6 +365,13 @@
     padding: 15px 20px;
   }
 
+  .hero-section-3d,
+  .workflow-section,
+  .roles-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .hero-title {
     font-size: 36px;
   }
@@ -394,16 +403,54 @@
 
 @media (max-width: 480px) {
   .home-nav {
-    flex-direction: column;
-    gap: 15px;
+    align-items: stretch;
   }
 
   .hero-title {
     font-size: 28px;
   }
 
+  .hero-section-3d {
+    min-height: auto;
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .home-auth {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .nav-login,
+  .nav-signup {
+    width: 100%;
+    text-align: center;
+  }
+
   .btn-outline {
+    width: 100%;
+    max-width: none;
     padding: 12px 24px;
     font-size: 14px;
+  }
+
+  .workflow-section,
+  .roles-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .workflow-section h2,
+  .roles-section h2 {
+    margin-bottom: 36px;
+  }
+
+  .card-3d,
+  .role-card {
+    height: 320px;
+  }
+
+  .home-footer {
+    padding: 30px 18px;
   }
 }
