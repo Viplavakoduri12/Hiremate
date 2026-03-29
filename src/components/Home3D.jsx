@@ -34,10 +34,6 @@ export default function Home3D() {
         <div className="home-logo">HireMate</div>
 
         <div className="home-auth">
-          <Link to="/login" className="nav-login">
-            Login
-          </Link>
-
           <Link to="/signup" className="nav-signup">
             Create Account
           </Link>
@@ -71,6 +67,12 @@ export default function Home3D() {
             >
               I'm an HR Recruiter
             </button>
+          </div>
+
+          <div className="hero-secondary-action">
+            <Link to="/login" className="hero-login-link">
+              Login
+            </Link>
           </div>
         </div>
       </section>
