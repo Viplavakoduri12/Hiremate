@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HireMate Application Tracking Case Study</title>
+  <style>
+    @page {
+      size: Letter;
+      margin: 0.72in 0.8in;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      margin: 0;
+      color: #111;
+      font-family: "Times New Roman", serif;
+      font-size: 12pt;
+      line-height: 1.38;
+      background: #fff;
+    }
+
+    .page {
+      min-height: 9.15in;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .title {
+      margin-top: 0.2in;
+      margin-bottom: 0.14in;
+      font-size: 22pt;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 0 0 0.18in;
+      text-align: center;
+      font-size: 15pt;
+      font-weight: 700;
+    }
+
+    .meta {
+      margin: 0.05in 0;
+      font-size: 12pt;
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 0 0 0.12in;
+      font-size: 16pt;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 0.12in;
+      text-align: justify;
+    }
+
+    ul {
+      margin: 0.06in 0 0.14in 0.28in;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0.06in;
+    }
+
+    .figure {
+      margin: 0.12in 0 0.16in;
+      text-align: center;
+    }
+
+    .figure img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #cbd5e1;
+    }
+
+    .figure-caption {
+      margin-top: 0.08in;
+      font-size: 10pt;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2in;
+      margin-top: 0.12in;
+    }
+
+    .image-card {
+      border: 1px solid #cbd5e1;
+      padding: 0.08in;
+    }
+
+    .image-card.wide {
+      grid-column: 1 / -1;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-title {
+      margin-top: 0.08in;
+      font-size: 11pt;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .code-block {
+      margin: 0.12in 0 0.18in;
+      border: 1px solid #d4d4d8;
+      background: #f8fafc;
+      padding: 0.12in;
+    }
+
+    .code-label {
+      margin-bottom: 0.06in;
+      font-size: 10pt;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: "Courier New", monospace;
+      font-size: 8.4pt;
+      line-height: 1.32;
+    }
+
+    .note-box {
+      margin-top: 0.14in;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      padding: 0.12in 0.14in;
+    }
+
+    .tight {
+      margin-bottom: 0.08in;
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <h1 class="title">Software Project Management Fundamentals - HireMate Website Case Study</h1>
+    <div class="subtitle">Application Tracking, ATS Review, and PDF Reporting</div>
+
+    <p class="meta">PROJECT: HireMate Applicant Tracking System</p>
+    <p class="meta">DATE: 30-03-2026</p>
+    <p class="meta">TECH STACK: React, React Router, Three.js, Express, MongoDB, jsPDF</p>
+    <p class="meta">MODULES: Applicant, HR Recruiter, Admin, Case Study PDF Section</p>
+
+    <p>
+      <strong>CASE STUDY:</strong> HireMate is a smart web-based Applicant Tracking System that helps companies
+      screen resumes, track candidate progress, and export shortlist reports. The website includes a landing page,
+      protected dashboards for applicants, HR teams, and admins, a resume upload flow with preview support, ATS-based
+      ranking, and an application tracking timeline for job seekers.
+    </p>
+
+    <p>
+      This PDF is written in the same report-oriented style as the shared reference document, but the matter, code,
+      and images are changed to reflect the actual HireMate website present in this project. The focus is the real
+      UI content, the application tracking workflow, the shortlist PDF generation logic, and the website visuals
+      already used in the HireMate interface.
+    </p>
+
+    <ul>
+      <li>The homepage introduces HireMate with workflow cards and case study PDF links.</li>
+      <li>The applicant dashboard collects user details and accepts resume uploads.</li>
+      <li>The HR dashboard analyzes resumes, shortlists candidates, updates statuses, and exports reports.</li>
+      <li>The tracking page shows progress states such as Applied, Review, Shortlisted, and Selected.</li>
+    </ul>
+
+    <div class="note-box">
+      <p class="tight"><strong>Report Objective:</strong> replace the example material inside the PDF with website-specific content from HireMate.</p>
+      <p class="tight"><strong>Report Inputs Used:</strong> React components, dashboard logic, site visuals, and the generated website screenshot.</p>
+      <p><strong>Expected Outcome:</strong> a project PDF that looks like a structured case-study report but documents this website instead of the earlier example.</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">1. Identify the Major Website Modules and Content Used in HireMate</h2>
+
+    <p><strong>Home Page Module</strong></p>
+    <ul>
+      <li>Displays the main headline "Hiring, Faster" and introduces HireMate as an Applicant Tracking System.</li>
+      <li>Shows workflow cards for Create Profile, Discover Matches, and Land Your Role.</li>
+      <li>Includes job-seeker and HR recruiter entry actions.</li>
+      <li>Contains the case-study section that links to project PDFs from the website itself.</li>
+    </ul>
+
+    <p><strong>Applicant Module</strong></p>
+    <ul>
+      <li>Collects applicant name, email, phone number, target role, and resume file.</li>
+      <li>Provides a 3D resume preview and a single-screen submission experience.</li>
+      <li>Redirects the applicant to the tracking screen after successful submission.</li>
+    </ul>
+
+    <p><strong>HR Module</strong></p>
+    <ul>
+      <li>Fetches applications from the backend and runs ATS analysis against a job description.</li>
+      <li>Highlights stronger candidates, missing skills, and shortlist-ready profiles.</li>
+      <li>Exports shortlisted candidates to a styled PDF using <strong>jsPDF</strong>.</li>
+    </ul>
+
+    <p><strong>Tracking Module</strong></p>
+    <ul>
+      <li>Uses step labels such as Applied, Review, Shortlisted, and Selected.</li>
+      <li>Calculates a progress percentage from the saved application status.</li>
+      <li>Shows a flip-card interface with summary data, estimated time, and rejection reason when present.</li>
+    </ul>
+
+    <div class="code-block">
+      <div class="code-label">Website data used by the case-study cards on the home page</div>
+      <pre>const caseStudies = [
+  {
+    id: "authentication",
+    badge: "Case Study 01",
+    title: "Authentication Testing",
+    subtitle: "Signup, login, OTP, and protected access",
+    image: "/case-studies/images/authentication-testing.svg",
+    pdf: "/case-studies/hiremate-authentication-testing.pdf",
+  },
+  {
+    id: "resume-screening",
+    badge: "Case Study 02",
+    title: "Resume Screening Testing",
+    subtitle: "PDF upload, ATS scoring, and shortlist ranking",
+    image: "/case-studies/images/resume-screening-testing.svg",
+    pdf: "/case-studies/hiremate-resume-screening-testing.pdf",
+  },
+  {
+    id: "application-tracking",
+    badge: "Case Study 03",
+    title: "Application Tracking Testing",
+    subtitle: "Status updates, shortlist export, and timeline feedback",
+    image: "/case-studies/images/application-tracking-testing.svg",
+    pdf: "/case-studies/hiremate-application-tracking-testing.pdf",
+  },
+];</pre>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">2. Website Output Image: HireMate Landing Page and Case Study Section</h2>
+
+    <p>
+      The figure below is a real screenshot captured from the built HireMate website. It shows the navigation bar,
+      the main hero message, the three workflow cards, and the case-study PDF area that links users to the project
+      documents. This image connects the PDF directly to the actual front-end experience of the website.
+    </p>
+
+    <div class="figure">
+      <img src="hiremate-homepage.png" alt="HireMate homepage screenshot">
+      <div class="figure-caption">Figure 1. HireMate landing page showing the hero section, workflow cards, and case study PDFs.</div>
+    </div>
+
+    <p>
+      The screenshot highlights how the project presents itself to both job seekers and HR recruiters. It also confirms
+      that the application-tracking PDF belongs to a visible website section instead of being an isolated file outside
+      the product. This was important for the updated report because the user asked for matter and images from this
+      website itself.
+    </p>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">3. Website Visual Assets Related to Tracking, ATS, and Testing</h2>
+
+    <p>
+      The HireMate site already includes project-specific graphics for its case study area. These visuals are part of
+      the website and help communicate the themes of authentication, resume screening, and application tracking.
+      They are used here as website images inside the report.
+    </p>
+
+    <div class="image-grid">
+      <div class="image-card">
+        <img src="../../public/case-studies/images/authentication-testing.svg" alt="Authentication testing visual">
+        <div class="card-title">Authentication Testing Visual</div>
+      </div>
+
+      <div class="image-card">
+        <img src="../../public/case-studies/images/resume-screening-testing.svg" alt="Resume screening testing visual">
+        <div class="card-title">Resume Screening Visual</div>
+      </div>
+
+      <div class="image-card wide">
+        <img src="../../public/case-studies/images/application-tracking-testing.svg" alt="Application tracking testing visual">
+        <div class="card-title">Application Tracking Visual Used by the Website</div>
+      </div>
+    </div>
+
+    <p>
+      These images support the same flow described in the UI copy: applicant onboarding, ATS review, and candidate
+      status movement through the tracking and shortlist lifecycle. Including them inside the PDF keeps the content
+      aligned with the website instead of the previous generic testing example.
+    </p>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">4. React Code Used for the Applicant Tracking Timeline</h2>
+
+    <p>
+      The tracking screen in <strong>TrackStatus.jsx</strong> defines fixed status steps, fetches the current user's
+      applications, converts backend records into display data, and calculates progress percentages for the timeline.
+      This is one of the most important code sections for the application-tracking feature.
+    </p>
+
+    <div class="code-block">
+      <div class="code-label">Tracking steps, fetch logic, and progress calculation from the website</div>
+      <pre>const steps = [
+  { key: "APPLIED", label: "Applied" },
+  { key: "UNDER_REVIEW", label: "Review" },
+  { key: "SHORTLISTED", label: "Shortlisted" },
+  { key: "ACCEPTED", label: "Selected" }
+];
+
+useEffect(() =&gt; {
+  fetch(apiUrl("/api/applications/my-applications"), {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  })
+    .then(res =&gt; res.json())
+    .then(data =&gt; {
+      const formatted = data.map(app =&gt; ({
+        jobRole: app.role,
+        status: app.status,
+        createdAt: app.createdAt,
+        rejectionReason: app.rejectionReason || ""
+      }));
+
+      setApplications(formatted);
+    })
+    .catch(err =&gt;
+      console.error("Dashboard fetch error:", err)
+    );
+}, []);
+
+const getProgressPercent = (status) =&gt; {
+  if (status === "REJECTED") return 25;
+
+  const index = steps.findIndex(
+    (s) =&gt; s.key === status
+  );
+
+  if (index === -1) return 0;
+
+  return Math.round(
+    ((index + 1) / steps.length) * 100
+  );
+};</pre>
+    </div>
+
+    <ul>
+      <li>The timeline logic converts raw backend data into a clear user-facing progress display.</li>
+      <li>The progress bar is tied directly to the ordered step list.</li>
+      <li>The same screen also calculates summary totals for review, shortlist, and accepted candidates.</li>
+    </ul>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">5. React and jsPDF Code Used for the Shortlist PDF Export</h2>
+
+    <p>
+      The HR dashboard contains built-in PDF generation logic. This makes the website itself capable of producing a
+      styled shortlist report with summary cards, table headers, page shell elements, and candidate ranking details.
+      The following excerpt is taken from <strong>HRDashboard.jsx</strong>.
+    </p>
+
+    <div class="code-block">
+      <div class="code-label">Shortlist PDF creation logic used by the HireMate website</div>
+      <pre>const drawPdfNavbar = (doc, pageWidth, reportLabel) =&gt; {
+  doc.setFillColor(2, 6, 23);
+  doc.rect(0, 0, pageWidth, PDF_HEADER_HEIGHT, "F");
+
+  drawPdfLogo(doc, PDF_MARGIN, 6);
+
+  doc.setTextColor(241, 245, 249);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(15);
+  doc.text("HireMate", PDF_MARGIN + 16, 14);
+};
+
+const drawPdfFooter = (doc, pageWidth, pageHeight, pageNumber) =&gt; {
+  doc.line(PDF_MARGIN, pageHeight - PDF_FOOTER_HEIGHT, pageWidth - PDF_MARGIN, pageHeight - PDF_FOOTER_HEIGHT);
+  doc.text("HireMate shortlist report", PDF_MARGIN, pageHeight - 5);
+  doc.text(`Page ${pageNumber}`, pageWidth - PDF_MARGIN, pageHeight - 5, {
+    align: "right",
+  });
+};
+
+const downloadShortlistedPDF = () =&gt; {
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const generatedAt = formatReportTimestamp();
+
+  drawPageShell();
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("Shortlisted Candidates Report", PDF_MARGIN, PDF_CONTENT_TOP);
+
+  doc.text(`Generated on ${generatedAt}`, PDF_MARGIN, PDF_CONTENT_TOP + 7);
+  doc.text(`Role: ${role}`, pageWidth - PDF_MARGIN, PDF_CONTENT_TOP + 7, {
+    align: "right",
+  });
+
+  drawPdfSummaryCard(doc, PDF_MARGIN, PDF_CONTENT_TOP + 14, summaryCardWidth, "Shortlisted", String(shortlisted.length), "accent");
+  drawPdfSummaryCard(doc, PDF_MARGIN + summaryCardWidth + 6, PDF_CONTENT_TOP + 14, summaryCardWidth, "Average Match", `${averageShortlistMatch}%`, "default");
+  drawPdfSummaryCard(doc, PDF_MARGIN + (summaryCardWidth + 6) * 2, PDF_CONTENT_TOP + 14, summaryCardWidth, "Top Candidate", topCandidateLabel, "success");
+};</pre>
+    </div>
+
+    <p>
+      This code is directly relevant to the current PDF task because HireMate already includes its own PDF-reporting
+      workflow inside the HR dashboard. The document you asked to update now describes this website logic instead of
+      the earlier generic registration-form example.
+    </p>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">6. What Assertions and Validation Points Suit This Website?</h2>
+
+    <p>
+      Assertions for HireMate should verify both the visible UI and the business state behind it. The following points
+      fit the current website structure and can be used for manual testing, UI testing, or Selenium-style automation.
+    </p>
+
+    <ul>
+      <li><strong>Homepage Rendering Assertion:</strong> the landing page should show the HireMate headline, workflow cards, and the three case-study PDF cards.</li>
+      <li><strong>PDF Link Assertion:</strong> each case-study card should point to its own PDF file in <em>/case-studies/</em>.</li>
+      <li><strong>Protected Route Assertion:</strong> applicant, HR, and admin pages should not open without a token and matching role.</li>
+      <li><strong>Tracking Progress Assertion:</strong> status values such as APPLIED or SHORTLISTED should map to the expected progress percentage.</li>
+      <li><strong>Summary Count Assertion:</strong> the Track Status page should compute total, review, shortlisted, and accepted values from application data.</li>
+      <li><strong>PDF Export Assertion:</strong> the HR shortlist report should generate a PDF with header, footer, summary cards, and candidate rows.</li>
+      <li><strong>Error Message Assertion:</strong> fetch failures or invalid operations should surface a readable message rather than silently failing.</li>
+    </ul>
+
+    <div class="note-box">
+      <p class="tight"><strong>Expected Output from the Website:</strong> applicants can submit, track, and review statuses; HR can analyze resumes and export shortlist reports.</p>
+      <p><strong>Expected Output from this PDF:</strong> the report now documents real HireMate matter, code, and website images while keeping a structured academic case-study style.</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2 class="section-title">7. Execution Notes and Identified Improvements for HireMate</h2>
+
+    <p><strong>A. Observed Website Strengths</strong></p>
+    <ul>
+      <li>The homepage clearly communicates the product to both job seekers and HR recruiters.</li>
+      <li>The case-study area is already integrated into the public website.</li>
+      <li>The tracking page uses a clean step-based model that is easy for applicants to understand.</li>
+      <li>The HR dashboard contains a thoughtful PDF export feature with branded layout and pagination.</li>
+    </ul>
+
+    <p><strong>B. Improvements Identified During Code Review</strong></p>
+    <ul>
+      <li><strong>Protected Route Trust:</strong> route access currently depends on <em>localStorage</em> token and role values, which is fine for UI control but should always be backed by secure server-side authorization.</li>
+      <li><strong>Tracking Fetch Feedback:</strong> the track screen logs fetch failures to the console, but a stronger user-facing empty or error state would improve resilience.</li>
+      <li><strong>Encoding Cleanup:</strong> a few files contain odd encoded symbols in comments or text output, which should be normalized for cleaner maintenance.</li>
+      <li><strong>Screenshot Automation:</strong> report assets are easier to maintain if website screenshots are regenerated whenever the UI changes.</li>
+    </ul>
+
+    <p>
+      <strong>Conclusion:</strong> the content inside this PDF has been shifted away from the older example and aligned with the
+      actual HireMate website. The report now includes website matter, real project code excerpts, and images taken
+      from or generated from the website itself, which is what was requested.
+    </p>
+  </section>
+</body>
+</html>

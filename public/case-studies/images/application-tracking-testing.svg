@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="44" x2="576" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081424"/>
+      <stop offset="1" stop-color="#153a56"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="102" y1="84" x2="528" y2="306" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10263a"/>
+      <stop offset="1" stop-color="#0a1a29"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#79e0ff"/>
+      <stop offset="1" stop-color="#1799d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" rx="38" fill="url(#bg)"/>
+  <circle cx="114" cy="90" r="46" fill="#0f4f75" opacity=".28"/>
+  <circle cx="548" cy="300" r="56" fill="#127eae" opacity=".16"/>
+  <rect x="96" y="82" width="448" height="236" rx="28" fill="url(#panel)" stroke="#62d3ff" stroke-opacity=".22"/>
+  <text x="128" y="126" fill="#e7f8ff" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Tracking Test</text>
+  <text x="128" y="152" fill="#90d4ed" font-family="Segoe UI, Arial, sans-serif" font-size="14">Status progress and shortlist exports</text>
+  <path d="M156 226h320" stroke="#2b6b91" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="176" cy="226" r="22" fill="url(#node)"/>
+  <circle cx="318" cy="226" r="22" fill="url(#node)"/>
+  <circle cx="460" cy="226" r="22" fill="url(#node)"/>
+  <path d="M166 226l8 8 14-18" stroke="#042033" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M308 226l8 8 14-18" stroke="#042033" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M450 226l8 8 14-18" stroke="#042033" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="146" y="272" fill="#dff7ff" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Applied</text>
+  <text x="277" y="272" fill="#dff7ff" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Review</text>
+  <text x="413" y="272" fill="#dff7ff" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Accepted</text>
+  <rect x="414" y="110" width="96" height="62" rx="18" fill="#0e3854" stroke="#74d8ff" stroke-opacity=".28"/>
+  <text x="438" y="136" fill="#8fdbff" font-family="Segoe UI, Arial, sans-serif" font-size="12">PDF</text>
+  <text x="428" y="156" fill="#dff7ff" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">Shortlist</text>
+</svg>

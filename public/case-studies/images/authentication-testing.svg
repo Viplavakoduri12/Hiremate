@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="40" x2="588" y2="352" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#061423"/>
+      <stop offset="1" stop-color="#0e2e47"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="106" y1="80" x2="500" y2="306" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10253a"/>
+      <stop offset="1" stop-color="#091829"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="420" y1="76" x2="560" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6bd7ff"/>
+      <stop offset="1" stop-color="#1498d5"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" rx="38" fill="url(#bg)"/>
+  <circle cx="98" cy="82" r="44" fill="#12314a" opacity=".55"/>
+  <circle cx="560" cy="312" r="58" fill="#0b5f90" opacity=".25"/>
+  <rect x="94" y="78" width="262" height="246" rx="24" fill="url(#panel)" stroke="#62d3ff" stroke-opacity=".28"/>
+  <text x="124" y="122" fill="#e7f8ff" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">Auth Testing</text>
+  <text x="124" y="148" fill="#8ecfe8" font-family="Segoe UI, Arial, sans-serif" font-size="14">Signup, login, and secure route checks</text>
+  <rect x="124" y="178" width="202" height="38" rx="12" fill="#0a2132" stroke="#1f6a97"/>
+  <text x="144" y="202" fill="#b9e9ff" font-family="Segoe UI, Arial, sans-serif" font-size="14">Email validation</text>
+  <rect x="124" y="228" width="202" height="38" rx="12" fill="#0a2132" stroke="#1f6a97"/>
+  <text x="144" y="252" fill="#b9e9ff" font-family="Segoe UI, Arial, sans-serif" font-size="14">OTP verification</text>
+  <rect x="124" y="278" width="202" height="22" rx="11" fill="#1e8fd0"/>
+  <text x="187" y="293" fill="#03131f" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">Protected access</text>
+  <rect x="400" y="92" width="152" height="196" rx="28" fill="#08273c" stroke="#68d7ff" stroke-opacity=".24"/>
+  <circle cx="476" cy="138" r="34" fill="url(#accent)"/>
+  <path d="M464 137.5l8.5 8.5L489 129" stroke="#032033" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M452 190c0-13.255 10.745-24 24-24 13.255 0 24 10.745 24 24v12h14v36h-76v-36h14v-12Z" fill="#103653" stroke="#74d8ff" stroke-opacity=".35"/>
+  <text x="437" y="256" fill="#dff7ff" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">Role pass</text>
+  <text x="427" y="278" fill="#8ecfe8" font-family="Segoe UI, Arial, sans-serif" font-size="12">Applicant | HR | Admin</text>
+</svg>
